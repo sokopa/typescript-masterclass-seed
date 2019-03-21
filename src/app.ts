@@ -1,19 +1,14 @@
-// Object literal
-
-const myObj = {
+class MyClass {
   myMethod() {
-    console.log('Object:::', this);
-  },
-};
-// myObj.myMethod(); // myobj is invoking the function
-
-// Function
-function myFunction(...text: string[]) {
-  console.log('Function:::', this, text);
+    const foo = 123;
+    console.log('1', this);
+    setTimeout(() => {
+      console.log('2', this);
+    }, 0);
+    // arrow function is binding the object to this
+    // arrow does not create a scope change from setTimeout
+  }
 }
-const bindFunction = myFunction.bind(myObj);
-bindFunction('ABC', 'DEF');
-bindFunction('123', '456');
-bindFunction('ABC', 'DEF');
-myFunction.call(myObj, 'ABC', 'DEF');
-myFunction.apply(myObj, ['ABC', 'DEF']);
+
+const myInstance = new MyClass();
+myInstance.myMethod();
