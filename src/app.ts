@@ -1,8 +1,3 @@
-function myFunction() {
-  console.log('Function:::', this);
-}
-myFunction(); // window is invoking the function
-
 // Object literal
 
 const myObj = {
@@ -10,14 +5,15 @@ const myObj = {
     console.log('Object:::', this);
   },
 };
-myObj.myMethod(); // myobj is invoking the function
+// myObj.myMethod(); // myobj is invoking the function
 
-// Classes
-class MyClass {
-  myMethod() {
-    console.log('Class:::', this);
-  }
+// Function
+function myFunction(...text: string[]) {
+  console.log('Function:::', this, text);
 }
-
-const myInstance = new MyClass();
-myInstance.myMethod();
+const bindFunction = myFunction.bind(myObj);
+bindFunction('ABC', 'DEF');
+bindFunction('123', '456');
+bindFunction('ABC', 'DEF');
+myFunction.call(myObj, 'ABC', 'DEF');
+myFunction.apply(myObj, ['ABC', 'DEF']);
