@@ -1,12 +1,12 @@
 interface Person {
   name: string;
-  age: number;
+  age?: number;
 }
 
-// type MyPartial<T> = { [P in keyof T]?: T[P] };
+type MyRequired<T> = { [P in keyof T]-?: T[P] };
 
-function updatePerson(person: Person, prop: Partial<Person>) {
-  return { ...person, ...prop };
+function printAge(person: MyRequired<Person>) {
+  return `${person.name} is ${person.age}`;
 }
 
 const person: Person = {
@@ -14,6 +14,5 @@ const person: Person = {
   age: 27,
 };
 
-console.log(person);
-let newPerson = updatePerson(person, { name: 'ABC' });
-console.log(newPerson);
+const age = printAge(person);
+console.log(age);
