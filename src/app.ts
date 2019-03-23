@@ -1,16 +1,30 @@
-// interface Artist {
-//   name: string;
-// }
-
-// cannot create new instance of an interface.
-// only in class or object
-
-class ArtistCreator /*implements Artist*/ {
-  constructor(public name: string) {}
+class Pizza {
+  constructor(private name: string, private price: number) {}
 }
 
-function artistFactory({ name }: ArtistCreator) {
-  return new ArtistCreator(name);
+// Generics
+class List<T> {
+  private list: T[];
+
+  addItem(item: T): void {
+    this.list.push(item);
+  }
+
+  getList(): T[] {
+    return this.list;
+  }
 }
 
-artistFactory({ name: 'Sokopa' });
+const list = new List<Pizza>();
+// list.addItem('string');
+// list.addItem(5);
+list.addItem(new Pizza('Pepperoni', 15));
+const pizzas = list.getList();
+
+class Coupon {
+  constructor(private name: string) {}
+}
+
+const anotherList = new List<Coupon>();
+
+anotherList.addItem(new Coupon('PIZZA25'));
