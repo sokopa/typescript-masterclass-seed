@@ -1,14 +1,16 @@
-// by default enum assigns numeric values
-
-enum Sizes {
-  Small,
-  Medium,
-  Large,
+const enum Sizes {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
 }
 
-enum Sizes {
-  ExtraLarge = 3,
+// does not emit reverse mapping
+
+let selected: Sizes = Sizes.Small;
+
+function updateSize(size: Sizes): void {
+  selected = size;
 }
 
-console.log(Sizes.Medium, Sizes[Sizes.Medium]);
-console.log(Sizes.ExtraLarge, Sizes[Sizes.ExtraLarge]);
+updateSize(Sizes.Medium);
+console.log(selected);
