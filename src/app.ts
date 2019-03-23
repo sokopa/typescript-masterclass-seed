@@ -1,25 +1,37 @@
-class Song {
-  constructor(public title: string, public duration: number) {}
+interface Order {
+  id: string;
+  amount: number;
+  currency: string;
 }
 
-class Playlist {
-  constructor(public name: string, public songs: Song[]) {}
+interface Stripe {
+  card: string;
+  cvc: string;
 }
 
-// x is T : sets type if returns true
-function isSong(item: any): item is Song {
-  return item instanceof Song;
+interface PayPal {
+  email: string;
 }
 
-function getItemName(item: Song | Playlist) {
-  if (isSong(item)) return item.title;
-  return item.name;
-}
+// type intersection
+type CheckoutCard = Order & Stripe;
+type CheckoutPayPal = Order & PayPal;
 
-const songName = getItemName(new Song('Wonderwall', 30000));
-console.log('Song name:', songName);
+const order: Order = {
+  id: 'xj28s',
+  amount: 100,
+  currency: 'USD',
+};
 
-const playlistName = getItemName(
-  new Playlist('The Best Songs', [new Song('The Man', 300000)])
-);
-console.log('Playlist name:', playlistName);
+const orderCard: CheckoutCard = {
+  ...order,
+  card: '1000 2000 3000 4000',
+  cvc: '123',
+};
+
+const orderPaypal: CheckoutPayPal = {
+  ...order,
+  email: 'abc@def.com',
+};
+
+const assigned = Object.assign({}, order, orderCard);
