@@ -1,23 +1,16 @@
-interface Item {
-  name: string;
+// interface Artist {
+//   name: string;
+// }
+
+// cannot create new instance of an interface.
+// only in class or object
+
+class ArtistCreator /*implements Artist*/ {
+  constructor(public name: string) {}
 }
 
-interface Artist extends Item {
-  songs: number;
-}
-// can extend interface!!!
-interface Artist {
-  getSongs(): number;
+function artistFactory({ name }: ArtistCreator) {
+  return new ArtistCreator(name);
 }
 
-type Artist2 = {
-  name: string;
-} & Item;
-
-const newArtist: Artist = {
-  name: 'ABC',
-  songs: 5,
-  getSongs() {
-    return this.songs;
-  },
-};
+artistFactory({ name: 'Sokopa' });
