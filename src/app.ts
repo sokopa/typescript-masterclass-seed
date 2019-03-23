@@ -1,18 +1,12 @@
 interface Person {
   name: string;
   age?: number;
+  address: {};
 }
 
-type MyRequired<T> = { [P in keyof T]-?: T[P] };
+type MyPick<T, K extends keyof T> = { [P in K]: T[P] };
 
-function printAge(person: MyRequired<Person>) {
-  return `${person.name} is ${person.age}`;
-}
-
-const person: Person = {
+const person: Pick<Person, 'name' | 'age'> = {
   name: 'Todd',
   age: 27,
 };
-
-const age = printAge(person);
-console.log(age);
