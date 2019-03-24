@@ -1,3 +1,6 @@
-class Person {
-  name: string = 'Todd';
+export class Person {
+  constructor(private name: string) {}
+  getName() {
+    return this.name;
+  }
 }
