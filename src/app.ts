@@ -1,1 +1,1 @@
-function log(message: string) {}
+console.log('app');
