@@ -1,1 +1,1 @@
-Array.from(document.querySelectorAll('*'));
+const names: string = 123;
