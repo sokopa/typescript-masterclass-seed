@@ -6,9 +6,13 @@
     "start": "webpack-dev-server"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.123",
     "awesome-typescript-loader": "3.4.1",
     "typescript": "2.8.1",
     "webpack": "3.10.0",
     "webpack-dev-server": "2.9.7"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
   }
 }

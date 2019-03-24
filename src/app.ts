@@ -1,16 +1,11 @@
-const enum Sizes {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-}
+import * as _ from 'lodash';
 
-// does not emit reverse mapping
+_.chunk([1, 2, 3, 4], 2);
 
-let selected: Sizes = Sizes.Small;
+_.mixin({
+  log(item: string) {
+    console.log(':::', item);
+  },
+});
 
-function updateSize(size: Sizes): void {
-  selected = size;
-}
-
-updateSize(Sizes.Medium);
-console.log(selected);
+_.log('Hello!');
